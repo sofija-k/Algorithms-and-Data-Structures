@@ -64,4 +64,26 @@ def threeSum(self, nums: List[int]) -> List[List[int]]:
                     while nums[l] == nums[l-1] and l<r:
                         l += 1
         return res
-                        
+
+
+'''
+Container With Most Water
+link: https://leetcode.com/problems/container-with-most-water/description/
+'''
+def maxArea(self, heights: List[int]) -> int:
+    l, r = 0, len(heights) - 1
+    maxVol = 0
+    
+    while l < r:
+        x = r - l 
+        y = min(heights[l], heights[r])
+        vol = x * y
+        maxVol = max(maxVol, vol)
+        
+        # try another height by incrementing the pointer with the lower height
+        if heights[l] < heights[r]:
+            l += 1
+        else:
+            r -= 1
+    
+    return maxVol
