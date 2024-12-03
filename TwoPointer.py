@@ -1,10 +1,9 @@
+from typing import List
+
 '''
 Valid Palindrome
 link: https://leetcode.com/problems/valid-palindrome/description/
 '''
-from ast import List
-
-
 def isPalindrome(self, s: str) -> bool:
         # use two pointer method
         l, r = 0, len(s)-1
@@ -87,3 +86,28 @@ def maxArea(self, heights: List[int]) -> int:
             r -= 1
     
     return maxVol
+
+'''
+Trapping Rain Water
+link: https://leetcode.com/problems/trapping-rain-water/description/
+'''
+def trap(self, height: List[int]) -> int:
+    if not height:
+        return 0
+    
+    l, r = 0, len(height)-1
+    count = 0
+    maxLeft = height[l]
+    maxRight = height[r]
+    
+    while l < r:
+        if maxLeft < maxRight:
+            l += 1
+            maxLeft = max(height[l], maxLeft)
+            count += maxLeft - height[l]
+        else:
+            r -= 1
+            maxRight = max(height[r], maxRight)
+            count += maxRight - height[r]
+    
+    return count
